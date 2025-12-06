@@ -17,6 +17,10 @@ from supabase import create_client, Client
 # CONFIG & GLOBALS           
 # ===============================
 
+import os
+os.system("pip uninstall -y gradio")
+os.system("pip install gradio==5.29.1")
+
 load_dotenv()
 BASE_DIR = Path(__file__).parent if "__file__" in globals() else Path(".").resolve()
 DATA_DIR = Path.home() / ".tts_dataset_creator"
