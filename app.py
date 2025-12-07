@@ -12,6 +12,8 @@ import gradio as gr
 import soundfile as sf
 from werkzeug.security import generate_password_hash, check_password_hash
 from supabase import create_client, Client
+from huggingface_hub import hf_hub_download
+import json
 
 # ===============================
 # CONFIG & GLOBALS           
@@ -376,6 +378,10 @@ def split_dialect_code(dialect_code: str):
 
 SENTENCES_CACHE = {}  # {country_code: [(id, text, [dialects]), ...]}
 
+SENTENCES_REPO_ID = os.environ.get(
+    "SENTENCES_REPO_ID",
+    "AhmedAshrafMarzouk/dialects",  # TODO: set to your dataset repo id
+)
 
 def get_sentences_file_for_country(country_code: str) -> Path:
     """
